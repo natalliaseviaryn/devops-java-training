@@ -1,6 +1,13 @@
 #!/bin/bash
 echo "Installation of nginx"
 
+echo "${ssh_private_key}" > /home/ubuntu/.ssh/id_rsa
+echo "${ssh_public_key}" > /home/ubuntu/.ssh/id_rsa.pub
+chmod 400 /home/ubuntu/.ssh/id_rsa
+
+echo "${ssh_public_key}" >> /home/ec2-user/.ssh/authorized_keys
+chmod 600 /home/ubuntu/.ssh/authorized_keys
+
 sudo apt-get update
 sudo apt-get install -y nginx
 sudo systemctl start nginx
