@@ -9,3 +9,7 @@ docker run -p 8081:8080 --name books-app-test -d --rm -e DEVOPS='testNameEnvVar'
 docker login
 docker tag books-app:1 natalliaseviaryn/books-app:1
 docker push natalliaseviaryn/books-app:1
+
+if volume was created before, init script will not be executed
+docker volume ls
+docker volumes rm books_pgdata141

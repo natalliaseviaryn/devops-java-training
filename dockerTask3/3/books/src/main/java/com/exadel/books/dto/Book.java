@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class Book implements Serializable {
 
     private Integer id;
-    private String name;
+    private String title;
     private String author;
 }
