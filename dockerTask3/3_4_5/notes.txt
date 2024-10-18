@@ -13,3 +13,7 @@ docker push natalliaseviaryn/books-app:1
 if volume was created before, init script will not be executed
 docker volume ls
 docker volumes rm books_pgdata141
+
+
+jdbc:postgresql://localhost:5432/dockertestdb
+admin user
