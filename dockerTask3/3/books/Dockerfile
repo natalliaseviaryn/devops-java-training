@@ -25,4 +25,7 @@ FROM openjdk:17 AS runtime
 WORKDIR /app
 COPY --from=build /app/build/libs/books-0.1.0-SNAPSHOT.jar /app/books-0.1.0-SNAPSHOT.jar
 
+ENV DEVOPS="Sergey Suhinin"
+EXPOSE 8080
+
 ENTRYPOINT ["java","-jar","books-0.1.0-SNAPSHOT.jar"]

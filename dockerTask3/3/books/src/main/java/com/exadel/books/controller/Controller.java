@@ -14,6 +14,9 @@ import com.exadel.books.service.BookService;
 
 import lombok.AllArgsConstructor;
 
+import static java.lang.System.getenv;
+import static org.apache.logging.log4j.util.Strings.isEmpty;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("")
@@ -21,15 +24,24 @@ public class Controller {
 
     private final BookService bookService;
 
-    @GetMapping
+    @GetMapping("books")
     public ResponseEntity<List<Book>> getAllBooks() {
        List<Book> books = bookService.getAllBooks();
        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("books/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") Integer bookId) {
         Book book = bookService.getBookById(bookId);
         return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    @GetMapping("devops")
+    public ResponseEntity<String> getDevopsName() {
+        String devops = getenv("DEVOPS");
+        if (isEmpty(devops)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(devops, HttpStatus.OK);
     }
 }
