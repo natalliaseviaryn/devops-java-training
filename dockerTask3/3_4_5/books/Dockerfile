@@ -16,7 +16,7 @@ ENV PATH=$PATH:$JAVA_HOME/bin
 WORKDIR /app
 COPY --from=build /app/build/libs/books-0.1.0-SNAPSHOT.jar /app/books-0.1.0-SNAPSHOT.jar
 
-ENV DEVOPS="DEVOPS"
+ENV DEVOPS=DEVOPS
 ENV DB_SERVER=test
 ENV POSTGRES_USER=root
 ENV POSTGRES_PASSWORD=secret
