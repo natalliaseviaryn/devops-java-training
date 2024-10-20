@@ -1,5 +1,6 @@
 package com.exadel.books.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,12 @@ public class Controller {
     @GetMapping("books")
     public ResponseEntity<List<Book>> getAllBooks() {
        List<Book> books = bookService.getAllBooks();
+       return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+    @GetMapping("books/db")
+    public ResponseEntity<List<Book>> getAllDBBooks() throws SQLException {
+       List<Book> books = bookService.getAllDBBooks();
        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 

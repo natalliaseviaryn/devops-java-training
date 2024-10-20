@@ -1,13 +1,19 @@
 package com.exadel.books.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.exadel.books.dto.Book;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class BookService {
+
+    private final DBService dbService;
 
     private static final List<Book> BOOKS = List.of(
         new Book(1, "To Kill a Mockingbird", "Harper Lee"),
@@ -17,6 +23,10 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         return BOOKS;
+    }
+
+    public List<Book> getAllDBBooks() throws SQLException {
+        return dbService.getBooksData();
     }
 
     public Book getBookById(Integer id) {

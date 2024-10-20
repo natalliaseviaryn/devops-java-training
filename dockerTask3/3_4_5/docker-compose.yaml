@@ -4,17 +4,24 @@ services:
     deploy:
       replicas: 5
   books:
-    image: 'natalliaseviaryn/books-app:1'
+    image: 'natalliaseviaryn/books-app:511'
     restart: always
     deploy:
       replicas: 1
     ports:
       - '8081:8080'
+    environment:
+      - DEVOPS=Sergey Suhinin
+      - DB_SERVER=db
+      - POSTGRES_DB=dockertestdb
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=supersecretpassword
     depends_on:
       db:
         condition: service_started
   db:
     image: postgres:14.1-alpine
+    container_name: db
     restart: always
     ports:
       - 5432:5432
@@ -24,7 +31,7 @@ services:
       POSTGRES_PASSWORD: supersecretpassword
     volumes:
       - pgdata141:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./books/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   pgdata141:
