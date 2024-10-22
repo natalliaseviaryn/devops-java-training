@@ -31,4 +31,4 @@ jobs:
          docker buildx build \
           --platform linux/arm64/v8 \
           --push \
-          -t natalliaseviaryn/books-app:111 ./dockerTask3/3_4_5/books  
+          -t natalliaseviaryn/books-app:latest ./dockerTask3/3_4_5/books  
