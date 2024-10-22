@@ -4,7 +4,7 @@ services:
     deploy:
       replicas: 5
   books:
-    image: 'natalliaseviaryn/books-app:6'
+    image: 'natalliaseviaryn/books-app:latest'
     restart: always
     deploy:
       replicas: 1

@@ -17,3 +17,5 @@ docker volumes rm books_pgdata141
 
 jdbc:postgresql://localhost:5432/dockertestdb
 admin user
+
+docker run -p 8081:8080 --name books-app-test -d --rm natalliaseviaryn/books-app:latest
