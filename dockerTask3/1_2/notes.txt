@@ -1,5 +1,0 @@
-1. Installation of docker from https://docs.docker.com/engine/install/ubuntu/
-
-2
-Test Hello world:
-sudo docker run hello-world
