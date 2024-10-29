@@ -1,6 +1,5 @@
 package com.exadel.books.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -14,9 +13,6 @@ import com.exadel.books.dto.Book;
 import com.exadel.books.service.BookService;
 
 import lombok.AllArgsConstructor;
-
-import static java.lang.System.getenv;
-import static org.apache.logging.log4j.util.Strings.isEmpty;
 
 @AllArgsConstructor
 @RestController

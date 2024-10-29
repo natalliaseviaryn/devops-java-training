@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'com.github.spotbugs' version '5.0.13'
 }
 
 group = 'com.exadel'
@@ -21,6 +22,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	gradlePluginPortal()
 }
 
 dependencies {
@@ -31,8 +33,36 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+spotbugs {
+	toolVersion = '4.7.3'
+	ignoreFailures = false
+	effort = 'max'
+	showProgress = true
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/java']
+	}
+}
+
+tasks.spotbugsMain {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+    }
+}
+tasks.spotbugsTest {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+    }
 }
