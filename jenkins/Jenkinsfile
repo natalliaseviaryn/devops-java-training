@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/natalliaseviaryn/devops-java-training.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/task4GoodCode']],
+                    userRemoteConfigs: [[url: 'https://github.com/natalliaseviaryn/devops-java-training.git']]
+                ])
             }
         }
         stage('Build') {
