@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'com.github.spotbugs' version '5.0.13'
+	id 'org.owasp.dependencycheck' version '8.4.0'
 }
 
 group = 'com.exadel'
@@ -65,4 +66,16 @@ tasks.spotbugsTest {
         xml.required.set(false)
         html.required.set(true)
     }
+}
+
+dependencyCheck {
+	failBuildOnCVSS = 7.0
+	autoUpdate = false
+	suppressionFile = 'dependency-check-suppression.xml'
+	suppressionFile = null
+	analyzers {
+		assemblyEnabled = false
+	}
+	formats = ['HTML', 'XML']
+	outputDirectory = "$buildDir/reports/dependency-check"
 }
