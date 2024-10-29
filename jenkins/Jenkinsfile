@@ -6,7 +6,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/task4GoodCode']],
+                    branches: [[name: '*/task4CheckstyleFailCode']],
                     userRemoteConfigs: [[url: 'https://github.com/natalliaseviaryn/devops-java-training.git']]
                 ])
             }
