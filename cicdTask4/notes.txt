@@ -17,7 +17,7 @@ docker run \
   docker:dind \
   --storage-driver overlay2
 
-doсkerfile
+
 docker build -t myjenkins-blueocean:2.462.3-1 .
 
 docker run \
@@ -34,4 +34,3 @@ docker run \
   --volume jenkins-docker-certs:/certs/client:ro \
   myjenkins-blueocean:2.462.3-1
 
-http://localhost:8080/manage/pluginManager/updates/
