@@ -9,17 +9,23 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh './gradlew clean build'
+                dir('books') {
+                    sh './gradlew clean build'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh './gradlew test'
+                dir('books') {
+                    sh './gradlew test'
+                }
             }
         }
         stage('Package') {
             steps {
-                sh './gradlew bootJar'
+                dir('books') {
+                    sh './gradlew bootJar'
+                }
             }
         }
     }
