@@ -35,3 +35,4 @@ docker run \
   myjenkins-blueocean:2.462.3-1
 
 http://localhost:8080/manage/pluginManager/updates/
+ngrok http 8087
