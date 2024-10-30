@@ -24,4 +24,4 @@ jobs:
 
       - name: Run yamllint on YAML files
         run: |
-          yamllint -c books/.yamllint.yaml books/src/main/resources/application*.yml
+          yamllint -c books/.yamllint books/src/main/resources/application*.yml
