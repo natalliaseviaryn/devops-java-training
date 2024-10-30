@@ -1,0 +1,27 @@
+name: Yamllint GitHub Actions
+
+on:
+  pull_request:
+    types: [ opened ]
+
+jobs:
+  yamllint:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install yamllint
+        run: |
+          pip install yamllint
+
+      - name: Run yamllint on YAML files
+        run: |
+          yamllint -c books/.yamllint.yaml books/src/main/resources/application*.yml

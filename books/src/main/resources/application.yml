@@ -1,1 +1,3 @@
 spring.application.name: books
+
+test.config.to.fail.yamllint: 1233234234dfhkjsdhfnsdfkswue4rsdfmsdvmfslkfdsfsdfsdfsdfsf
