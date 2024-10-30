@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/task4GoodCode']],
+                    userRemoteConfigs: [[url: 'https://github.com/natalliaseviaryn/devops-java-training.git']]
+                ])
+            }
+        }
+        stage('Build') {
+            steps {
+                dir('books') {
+                    sh './gradlew clean build'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir('books') {
+                    sh './gradlew test'
+                }
+            }
+        }
+        stage('Package') {
+            steps {
+                dir('books') {
+                    sh './gradlew bootJar'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
+}

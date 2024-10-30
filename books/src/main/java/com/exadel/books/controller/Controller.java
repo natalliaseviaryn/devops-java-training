@@ -31,24 +31,9 @@ public class Controller {
        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    @GetMapping("books/db")
-    public ResponseEntity<List<Book>> getAllDBBooks() throws SQLException {
-       List<Book> books = bookService.getAllDBBooks();
-       return new ResponseEntity<>(books, HttpStatus.OK);
-    }
-
     @GetMapping("books/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") Integer bookId) {
         Book book = bookService.getBookById(bookId);
         return new ResponseEntity<>(book, HttpStatus.OK);
-    }
-
-    @GetMapping("devops")
-    public ResponseEntity<String> getDevopsName() {
-        String devops = getenv("DEVOPS");
-        if (isEmpty(devops)) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(devops, HttpStatus.OK);
     }
 }

@@ -13,8 +13,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BookService {
 
-    private final DBService dbService;
-
     private static final List<Book> BOOKS = List.of(
         new Book(1, "To Kill a Mockingbird", "Harper Lee"),
         new Book(2, "1984", "George Orwell"),
@@ -23,10 +21,6 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         return BOOKS;
-    }
-
-    public List<Book> getAllDBBooks() throws SQLException {
-        return dbService.getBooksData();
     }
 
     public Book getBookById(Integer id) {
