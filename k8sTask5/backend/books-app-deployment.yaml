@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-app-deployment
+  labels:
+    app: books
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: books
+  template:
+    metadata:
+      labels:
+        app: books
+    spec:
+      containers:
+        - name: books
+          image: natalliaseviaryn/books-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DEVOPS
+              value: 'Test devops name'
+            - name: DB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: database_url
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres_db_secret
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres_user_secret
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres_password_secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: books-service
+spec:
+  selector:
+    app: books
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30000

@@ -1,0 +1,43 @@
+2. Get a list of nodes, pods, deployments, services, namespaces of your cluster.
+
+kubectl get deployments
+kubectl get pods
+kubectl get nodes
+kubectl get services
+kubectl get namespaces
+
+echo -n 'postgres' | base64
+
+kubectl apply -f postgres-secret.yaml
+kubectl apply -f postgres-deployment.yaml
+kubectl apply -f postgres-config-map.yaml
+kubectl apply -f books-app-deployment.yaml
+
+
+kubectl delete deployment postgres-deployment
+kubectl delete deployment books-app-deployment
+kubectl delete service postgres-service
+kubectl delete service books-service
+kubectl delete configmap postgres-config-map
+kubectl delete secret postgres-secret
+
+kubectl describe service postgres-service
+kubectl get pods -o wide
+
+external ip in minikube:
+minikube service books-service --url
+
+curl --location 'http://127.0.0.1:61172/books/db'
+
+
+
+HELM
+
+helm create helloworld
+values.yaml changed service.type - NodePort
+helm install my-test-helloworld helloworld
+
+to get hello world url:
+minikube service my-test-helloworld --url
+
+helm uninstall my-test-helloworld
