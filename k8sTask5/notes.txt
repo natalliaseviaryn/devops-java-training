@@ -13,6 +13,9 @@ kubectl apply -f postgres-deployment.yaml
 kubectl apply -f postgres-config-map.yaml
 kubectl apply -f books-app-deployment.yaml
 
+kubectl apply -f=postgres-secret.yaml,postgres-config-map.yaml,postgres-deployment.yaml
+kubectl apply -f books-app-deployment.yaml
+
 
 kubectl delete deployment postgres-deployment
 kubectl delete deployment books-app-deployment
@@ -41,3 +44,12 @@ to get hello world url:
 minikube service my-test-helloworld --url
 
 helm uninstall my-test-helloworld
+
+
+helmify -f ./backend -f ./db my-book-test-chart
+replace in values.yaml
+databaseUrl: my-book-test-chart-service
+helm install my-book-test-chart my-book-test-chart
+minikube service my-book-test-chart-books-service --url
+
+helm uninstall my-book-test-chart
